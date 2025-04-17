@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Don't Edge: Freak</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div id="pause-overlay">
+        <div class="pause-content">
+          <h2>Game Paused</h2>
+          <button onclick="resumeGame()">Resume</button>
+          <button onclick="goHome()">Home</button>
+        </div>
+      </div>
+      
+      
+    <!-- Customer Area -->
+    <div id="customer-section">
+      <div class="customer" id="customer1">
+        <img src="img/customer1.jpg" class="customer-face" />
+        <div class="order" id="order1"></div>
+        <div class="timer" id="timer1">50</div>
+        <button class="serve-btn" onclick="serveOrder(0)">Serve</button>
+      </div>
+      <div class="customer" id="customer2">
+        <img src="img/customer2.jpg" class="customer-face" />
+        <div class="order" id="order2"></div>
+        <div class="timer" id="timer2">50</div>
+        <button class="serve-btn" onclick="serveOrder(1)">Serve</button>
+      </div>
+      <div class="customer" id="customer3">
+        <img src="img/customer3.jpg" class="customer-face" />
+        <div class="order" id="order3"></div>
+        <div class="timer" id="timer3">50</div>
+        <button class="serve-btn" onclick="serveOrder(2)">Serve</button>
+      </div>
+    </div>
+
+    <!-- Gameplay Area -->
+    <div id="gameplay-row">
+      <!-- Make Food Area -->
+      <div id="make-food-area" class="drop-zone"></div>
+
+
+    <!-- Bottom Panel -->
+    <div id="bottom-panel">
+      <div id="ingredient-panel">
+        <img src="img/patty.png" class="ingredient" data-name="patty" />
+        <img src="img/lettuce.png" class="ingredient" data-name="lettuce" />
+        <img src="img/bacon.png" class="ingredient" data-name="bacon" />
+        <img src="img/tomato.png" class="ingredient" data-name="tomato" />
+        <img src="img/onion.png" class="ingredient" data-name="onion" />
+        <img src="img/cheese.png" class="ingredient" data-name="cheese" />
+        <img src="img/top-bun.png" class="ingredient" data-name="top-bun" />
+        <img src="img/bottom-bun.png" class="ingredient" data-name="bottom-bun" />
+        <img src="img/shiracha.png" class="ingredient" data-name="shiracha" />
+        <img src="img/mayo.png" class="ingredient" data-name="mayo" />
+        <img src="img/ketchup.png" class="ingredient" data-name="ketchup" />
+        <img src="img/pickle.png" class="ingredient" data-name="pickle" />
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+        <p id="score-display" class="score-display">Score: 0</p>
+        <div id="mad-score-display" class="mad-score">Mad Customers: 0 / 3</div>
+      </div>
+      <!-- Trash and Recipe Book -->
+      <div class="extras">
+        <img id="trash-can" src="img/trashcan.jpg" />
+      </div>
+
+      <div id="recipe-section">
+        <img id="recipe-book-btn" src="img/recipe.png" alt="Recipe Book" />
+        <div id="recipe-book">
+          <h2>📖 Recipe Book</h2>
+          <ul id="recipe-list"></ul>
+        </div>
+      </div>
+      
+
+    <!-- End Screen -->
+    <div id="end-screen">
+      <h2 id="end-message"></h2>
+      <button onclick="playAgain()">Play Again</button>
+      <button onclick="goHome()">Home</button>
+    </div>
+
+   
+
+  </div>
+
+  <audio id="sfx-bell" src="bell.mp3"></audio>
+  <audio id="sfx-hey">
+    <source src="mad-hey.mp3" type="audio/mpeg">
+  </audio>
+<audio id="bg-music" loop autoplay>
+  <source src="jazz-background.mp3" type="audio/mpeg">
+</audio>
+
+  <script src="game.js">
+  </script>
+
+<script>
+    const sfx = {
+      bell: document.getElementById("sfx-bell"),
+      mad: document.getElementById("sfx-mad"),
+  
+      play(bell) {
+        const sound = this[sfx-bell];
+        if (sound) {
+          sound.currentTime = 0;
+          sound.play();
+        }
+      },
+    play(mad) {
+        const sound = this[sfx-mad];
+        if (sound) {
+          sound.currentTime = 0;
+          sound.play();
+        }
+    
+    },
+  }
+  
+
+
+
+  </script>
+  
+</body>
+</html>
