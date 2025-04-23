@@ -1,133 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Don't Edge: Freak</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't Edge: Freak - Home</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="intro.js" defer></script>
 </head>
 <body>
 
-    <div id="pause-overlay">
-        <div class="pause-content">
-          <h2>Game Paused</h2>
-          <button onclick="resumeGame()">Resume</button>
-          <button onclick="goHome()">Home</button>
-        </div>
-      </div>
-      
-      
-    <!-- Customer Area -->
-    <div id="customer-section">
-      <div class="customer" id="customer1">
-        <img src="img/customer1.jpg" class="customer-face" />
-        <div class="order" id="order1"></div>
-        <div class="timer" id="timer1">50</div>
-        <button class="serve-btn" onclick="serveOrder(0)">Serve</button>
-      </div>
-      <div class="customer" id="customer2">
-        <img src="img/customer2.jpg" class="customer-face" />
-        <div class="order" id="order2"></div>
-        <div class="timer" id="timer2">50</div>
-        <button class="serve-btn" onclick="serveOrder(1)">Serve</button>
-      </div>
-      <div class="customer" id="customer3">
-        <img src="img/customer3.jpg" class="customer-face" />
-        <div class="order" id="order3"></div>
-        <div class="timer" id="timer3">50</div>
-        <button class="serve-btn" onclick="serveOrder(2)">Serve</button>
-      </div>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#mechanics">Mechanics</a></li>
+        </ul>
+    </nav>
+
+    <div id="loading-screen">
+        <img src="img/restaurent.jpg" alt="Loading Image" id="loading-image">
+        <h2>Loading...</h2>
     </div>
-
-    <!-- Gameplay Area -->
-    <div id="gameplay-row">
-      <!-- Make Food Area -->
-      <div id="make-food-area" class="drop-zone"></div>
-
-
-    <!-- Bottom Panel -->
-    <div id="bottom-panel">
-      <div id="ingredient-panel">
-        <img src="img/patty.png" class="ingredient" data-name="patty" />
-        <img src="img/lettuce.png" class="ingredient" data-name="lettuce" />
-        <img src="img/bacon.png" class="ingredient" data-name="bacon" />
-        <img src="img/tomato.png" class="ingredient" data-name="tomato" />
-        <img src="img/onion.png" class="ingredient" data-name="onion" />
-        <img src="img/cheese.png" class="ingredient" data-name="cheese" />
-        <img src="img/top-bun.png" class="ingredient" data-name="top-bun" />
-        <img src="img/bottom-bun.png" class="ingredient" data-name="bottom-bun" />
-        <img src="img/shiracha.png" class="ingredient" data-name="shiracha" />
-        <img src="img/mayo.png" class="ingredient" data-name="mayo" />
-        <img src="img/ketchup.png" class="ingredient" data-name="ketchup" />
-        <img src="img/pickle.png" class="ingredient" data-name="pickle" />
-      </div>
-
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
-        <p id="score-display" class="score-display">Score: 0</p>
-        <div id="mad-score-display" class="mad-score">Mad Customers: 0 / 3</div>
-      </div>
-      <!-- Trash and Recipe Book -->
-      <div class="extras">
-        <img id="trash-can" src="img/trashcan.jpg" />
-      </div>
-
-      <div id="recipe-section">
-        <img id="recipe-book-btn" src="img/recipe.png" alt="Recipe Book" />
-        <div id="recipe-book">
-          <h2>📖 Recipe Book</h2>
-          <ul id="recipe-list"></ul>
-        </div>
-      </div>
-      
-
-    <!-- End Screen -->
-    <div id="end-screen">
-      <h2 id="end-message"></h2>
-      <button onclick="playAgain()">Play Again</button>
-      <button onclick="goHome()">Home</button>
-    </div>
-
-   
-
-  </div>
-
-  <audio id="sfx-bell" src="bell.mp3"></audio>
-  <audio id="sfx-hey">
-    <source src="mad-hey.mp3" type="audio/mpeg">
-  </audio>
-<audio id="bg-music" loop autoplay>
-  <source src="jazz-background.mp3" type="audio/mpeg">
-</audio>
-
-  <script src="game.js">
-  </script>
-
-<script>
-    const sfx = {
-      bell: document.getElementById("sfx-bell"),
-      mad: document.getElementById("sfx-mad"),
-  
-      play(bell) {
-        const sound = this[sfx-bell];
-        if (sound) {
-          sound.currentTime = 0;
-          sound.play();
-        }
-      },
-    play(mad) {
-        const sound = this[sfx-mad];
-        if (sound) {
-          sound.currentTime = 0;
-          sound.play();
-        }
     
-    },
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Don't Edge: Freak Over</h1>
+            <h3 class="tagline">Cook fast or the freak is coming! 🍳👀</h3>
+        </header>
+
+        <!-- Introduction Section -->
+        <section id="introduction"  class="box-container">
+            <h2>🍔 Welcome to the Madness! 🍽️</h2>
+            <p>
+                Step into the kitchen of chaos! Your goal? <strong>Cook fast, serve correctly, and survive!</strong>
+                Every second counts—if you fail. 
+                Can you handle the pressure?
+            </p>
+        </section>
+
+        <section id="portfolio" class="box-container">
+            <h2>👨‍💻 Meet the team</h2>
+            <p>Meet the creators behind the madness!</p>
+        
+            <div class="portfolio-container">
+                <div class="portfolio-box">
+                    <div class="image">
+                        <img src="img/hadri.jpg" alt="Hadri">
+                    </div>
+                    <h3>💻 Developer: Hadri Aqashah</h3>
+                    <p>Specializes in game logic, programming, and backend development.</p>
+                </div>
+        
+                <div class="portfolio-box">
+                    <div class="image">
+                        <img src="img/arryan.jpg" alt="Arryan">
+                    </div>
+                    <h3>🎨 Designer: Arryan Rayqal</h3>
+                    <p>Focuses on UI/UX, animations, and making the game visually engaging.</p>
+                </div>
+            </div>
+        </section>
+        
+
+
+        <!-- Game Mechanics Section -->
+        <section id="mechanics" class="box-container">
+            <h2>🎮 How to play</h2>
+            <ol>
+                <li>
+                  <img src="img/check-order.png" alt="Customer Orders" class="mechanics-img">
+                  <div class="mechanics-text">
+                    👨‍🍳 <strong>Customer Orders:</strong> Check the customer's order — don’t mess up or they'll get mad!
+                  </div>
+                </li>
+                <li>
+                  <img src="img/prepare-food.png" alt="Prepare Food" class="mechanics-img">
+                  <div class="mechanics-text">
+                    🍞 <strong>Prepare the Food:</strong> Click the <strong>correct ingredients</strong> to the prep area.
+                  </div>
+                </li>
+                <li>
+                  <img src="img/trash.png" alt="Trash Mistakes" class="mechanics-img">
+                  <div class="mechanics-text">
+                    🗑️ <strong>Trash Mistakes:</strong> Drop any wrong ingredients in the trash bin. Clean cooking = clean score.
+                  </div>
+                </li>
+                <li>
+                  <img src="img/serve.png" alt="Serve Food" class="mechanics-img">
+                  <div class="mechanics-text">
+                    ✅ <strong>Serve Fast:</strong> Tap the Serve button to deliver food before your customer loses it.
+                  </div>
+                </li>
+                <li>
+                  <img src="img/beat-clock.png" alt="Timer" class="mechanics-img">
+                  <div class="mechanics-text">
+                    ⏱️ <strong>Beat the Timer:</strong> Every second counts — if the clock hits zero, your customer gets freaky 😵.
+                  </div>
+                </li>
+                <li>
+                  <img src="img/level-up.png" alt="Score System" class="mechanics-img">
+                  <div class="mechanics-text">
+                    🧠 <strong>Score System:</strong> Earn 15 points per perfect order. If 5 customers get mad, it’s game over!
+                  </div>
+                </li>
+              </ol>
+              
+       
+        </section>
+
+        <section id="gameplay-preview">
+          <h2>🔥 Gameplay </h2>
+          <p class="preview-text">See what it’s like inside the chaotic kitchen of <strong>Don't Edge: Freak Over</strong>.</p>
+          
+          <div class="video-wrapper">
+            <video autoplay loop muted playsinline>
+              <source src="Gameplay.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </section>
+        
+
+        <!-- Play Button -->
+        <section id="play">
+            <a href="game.html" class="play-button">🔥 Start Cooking! 🔥</a>
+        </section>
+    </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const video = document.getElementById('video-wrapper');
+
+  if (video) {
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
   }
-  
+});
 
-
-
-  </script>
-  
+</script>
 </body>
 </html>
