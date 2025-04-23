@@ -1,6 +1,8 @@
 // Pause System Variables
 let isPaused = false;
 
+let mad = true;
+
 // Function to Pause the Game
 function pauseGame() {
   isPaused = true;
@@ -31,13 +33,15 @@ const ingredientImageMap = {
 };
 
 const recipeList = [
-  { name: "Mega Bacon Bomb",      ingredients: ["bottom-bun","patty","bacon","cheese","lettuce","top-bun"] },
-  { name: "Healthy Green Burger", ingredients: ["bottom-bun","lettuce","tomato","onion","top-bun"] },
-  { name: "Classic Patty Stack",  ingredients: ["bottom-bun","patty","cheese","top-bun"] },
-  { name: "The Cheesy Patty Supreme", ingredients: ["bottom-bun","patty","cheese","mayo","top-bun"] },
-  { name: "Spicy Bacon Burger",    ingredients: ["bottom-bun","patty","bacon","onion","pickle","ketchup","shiracha","top-bun"] },
-  { name: "The Ultimate Combo King", ingredients: ["bottom-bun","patty","bacon","cheese","tomato","lettuce","mayo","onion","pickle","top-bun"] },
+  { name: "Mega Bacon Bomb with ice coke",      ingredients: ["bottom-bun","patty","bacon","cheese","lettuce","top-bun","coke-bottle"] },
+  { name: "Healthy Green Burger with ice lemon tea ", ingredients: ["bottom-bun","lettuce","tomato","onion","top-bun","lemon-tea"] },
+  { name: "Classic Patty Stack with ice coke",  ingredients: ["bottom-bun","patty","cheese","top-bun","coke-bottle"] },
+  { name: "The Cheesy Patty Supreme with cool water", ingredients: ["bottom-bun","patty","cheese","mayo","top-bun","water-bottle"] },
+  { name: "Spicy Bacon Burger with cool water",    ingredients: ["bottom-bun","patty","bacon","onion","pickle","ketchup","shiracha","top-bun","water-bottle"] },
+  { name: "The Ultimate Combo King with Strawberry Milkshake", ingredients: ["bottom-bun","patty","bacon","cheese","tomato","lettuce","mayo","onion","pickle","top-bun","milkshake"] },
+  { name: "Krabby Patty with ice lemon tea", ingredients: ["bottom-bun","patty","cheese","lettuce","tomato","onion","lettuce","mayo","top-bun","lemon-tea"] },
 ];
+
 
 const customerElements = [
   { face: "customer1", order: "order1", timer: "timer1" },
@@ -127,9 +131,13 @@ function startTimer(index) {
 
 function serveOrder(index) {
     
+  if (mad) {
+    mad = false;
+  } else {
     const servesound = document.getElementById("sfx-bell");
-    servesound.volume = 0.4;
+    servesound.volume = 1;
     servesound.play();
+  }
 
   if (isPaused) return;
   const served = Array.from(makeFoodArea.querySelectorAll("img")).map(img =>
@@ -152,19 +160,23 @@ function serveOrder(index) {
     makeFoodArea.innerHTML = "";
     spawnOrder(index);
     startTimer(index);
-    if (scores >= 5) endGame(true);
+    if (scores >= 10) endGame(true);
   } else {
     handleFreakyCustomer(index);
   }
 }
 
 function handleFreakyCustomer(index) {
+    mad = true;
+    const servesound = document.getElementById("mad-sound");
+    servesound.volume = 1;
+    servesound.play();
     const faceImg = customers[index].imageElement;
     faceImg.classList.add("freaky");
     madCustomers++;
     updateMadScore();
   
-    if (madCustomers >= 3) {
+    if (madCustomers >= 5) {
       endGame(false);
     } else {
       setTimeout(() => {
@@ -173,7 +185,7 @@ function handleFreakyCustomer(index) {
         startTimer(index);
       }, 1000);
     }
-  }
+}
   
 function updateScore() {
   document.getElementById("score-display").innerText = `Score: ${scores}`;
@@ -181,7 +193,7 @@ function updateScore() {
 
 function updateMadScore() {
   const el = document.getElementById("mad-score-display");
-  el.innerText = `Mad Customers: ${madCustomers} / 3`;
+  el.innerText = `Mad Customers: ${madCustomers} / 5`;
   el.classList.add("alert");
   setTimeout(() => el.classList.remove("alert"), 500);
 }
@@ -215,6 +227,29 @@ document.querySelectorAll(".ingredient").forEach(item => {
     e.dataTransfer.setData("ingredient", item.dataset.name);
   });
 });
+
+// Click to add ingredient instead of drag
+document.querySelectorAll(".ingredient").forEach(item => {
+  item.addEventListener("click", () => {
+    if (isPaused) return;
+    const name = item.dataset.name;
+    const src = ingredientImageMap[name] || `img/${name}.png`;
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.dataset.name = name;
+    img.className = "ingredient-dropped";
+    img.draggable = true;
+
+    img.addEventListener("dragstart", ev => {
+      if (isPaused) return;
+      ev.dataTransfer.setData("text/plain", img.outerHTML);
+    });
+
+    makeFoodArea.appendChild(img);
+  });
+});
+
 
 makeFoodArea.addEventListener("dragover", e => { if (!isPaused) e.preventDefault(); });
 makeFoodArea.addEventListener("drop", e => {
@@ -291,10 +326,11 @@ function populateRecipeBook() {
   list.innerHTML = "";
   recipeList.forEach(r => {
     const li = document.createElement("li");
-    li.textContent = `${r.name}: ${r.ingredients.join(", ")}`;
+    li.innerHTML = `<strong>${r.name}</strong>: ${r.ingredients.map(i => `<span>${i}</span>`).join(", ")}`;
     list.appendChild(li);
   });
 }
+
 
 document.getElementById("recipe-book-btn").addEventListener("click", () => {
   if (isPaused) return;
