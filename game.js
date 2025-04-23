@@ -160,7 +160,7 @@ function serveOrder(index) {
     makeFoodArea.innerHTML = "";
     spawnOrder(index);
     startTimer(index);
-    if (scores >= 10) endGame(true);
+    if (scores >= 15) endGame(true);
   } else {
     handleFreakyCustomer(index);
   }
